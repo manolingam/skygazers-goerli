@@ -17,8 +17,7 @@ import { Pagination } from '@/shared/Pagination';
 import { GetMyNFTs } from '@/graphql/queries';
 import { formatHoursBefore } from '@/utils/helpers';
 import { SkyLoader } from './Skyloader';
-
-const ITEMS_PER_PAGE = 12;
+import { ITEMS_PER_PAGE_HOME } from '@/utils/constants';
 
 const Gazer = ({ item, router }) => {
   return (
@@ -148,14 +147,14 @@ export const MyGazers = () => {
 
   const paginate = (_items, _pageNumber) => {
     _pageNumber ? setCurrentPage(_pageNumber) : null;
-    const indexOfLastRecord = currentPage * ITEMS_PER_PAGE;
-    const indexOfFirstRecord = indexOfLastRecord - ITEMS_PER_PAGE;
+    const indexOfLastRecord = currentPage * ITEMS_PER_PAGE_HOME;
+    const indexOfFirstRecord = indexOfLastRecord - ITEMS_PER_PAGE_HOME;
     const currentRecords = _items.slice(indexOfFirstRecord, indexOfLastRecord);
     setCurrentItems(currentRecords);
   };
 
   const cropRecords = (_items, _page) => {
-    setTotalPages(Math.ceil(_items.length / ITEMS_PER_PAGE));
+    setTotalPages(Math.ceil(_items.length / ITEMS_PER_PAGE_HOME));
     paginate(_items, _page);
   };
 

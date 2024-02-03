@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { verifyMessage, createPublicClient, http } from 'viem';
 import { goerli } from 'viem/chains';
 
-import { SKYGAZERS_NFT_CONTRACTS } from '@/utils/constants';
+import { SKYGAZERS_NFT_CONTRACT } from '@/utils/constants';
 import SKYGAZERS_ABI from '@/abi/SkyGazer.json';
 import Story from '@/models/story';
 
@@ -33,7 +33,7 @@ export async function POST(request) {
     });
 
     const data = await publicClient.readContract({
-      address: SKYGAZERS_NFT_CONTRACTS[5],
+      address: SKYGAZERS_NFT_CONTRACT,
       abi: SKYGAZERS_ABI,
       functionName: 'ownerOf',
       args: [Number(tokenId)]
