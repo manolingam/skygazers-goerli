@@ -19,7 +19,6 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {
   useContractWrite,
-  useNetwork,
   useWaitForTransaction,
   useAccount,
   useBalance
@@ -43,7 +42,6 @@ export const Cart = ({
   selectedGazers,
   setSelectedGazers
 }) => {
-  const { chain } = useNetwork();
   const { address } = useAccount();
   const { currentIndex } = useCurveSaleMinter();
   const router = useRouter();
@@ -198,7 +196,7 @@ export const Cart = ({
               fontFamily='gatwick'
               p='0'
               mb='2rem'
-              w={{ lg: '100%', sm: '200px' }}
+              w={{ lg: '90%', sm: '200px' }}
             >
               <Text
                 color='#59342b'
@@ -219,8 +217,9 @@ export const Cart = ({
                     color='
                   #FF5C00'
                   >
-                    It seems the connected wallet doesn't hold enough ETH to
-                    mint
+                    {address
+                      ? "It seems the connected wallet doesn't hold enough ETH to mint"
+                      : 'Connect your wallet to mint'}
                   </Text>
                 </Flex>
               )}
